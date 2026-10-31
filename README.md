@@ -15,8 +15,8 @@
 | Organism | *Homo sapiens* (human) |
 | Data type | Bulk RNA-seq (gene expression) |
 | Cell type | Primary human airway smooth muscle (ASM) cells |
-| Experimental design | 4 independent ASM cell lines, each either untreated or treated with dexamethasone (a synthetic glucocorticoid) |
-| Size | 8 samples in total (4 untreated + 4 dexamethasone-treated); a gene-level count table with tens of thousands of gene features (about 64,000 in the `airway` package; verify on the source page) |
+| Experimental design | 4 independent ASM cell lines, each given 4 treatments: untreated, dexamethasone (a synthetic glucocorticoid), albuterol, and albuterol + dexamethasone (16 samples in the GEO series). This project compares untreated vs dexamethasone. |
+| Size | 16 samples in the GEO series (4 per treatment). The Dex vs Untreated comparison uses 8 samples (4 untreated + 4 dexamethasone). The GEO FPKM matrix has 23,273 gene records. |
 | Access | Free and public, no login required |
 
 ## Research Question
