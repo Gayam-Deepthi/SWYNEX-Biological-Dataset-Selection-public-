@@ -1,63 +1,59 @@
-# SWYNEX Biological Dataset Selection
+# SWYNEX-Biological-Dataset-Selection
 
-**Task 1, SWYNEX Technologies Internship**
+**Task 1: Biological Dataset Selection, SWYNEX Technologies Internship**
 
 ## Selected Dataset
-**1000 Genomes Project (Phase 3), Chromosome 22**
 
-## Source
-- Project site: https://www.internationalgenome.org/
-- Data (FTP, open access): https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/
-- Genotype file: ALL.chr22.phase3_shapeit2_mvncht_integrated_v5a.20130502.genotypes.vcf.gz
-- Sample metadata (population labels): integrated_call_samples_v3.20130502.ALL.panel
-- Access: free and public, no registration required
-- Reference: The 1000 Genomes Project Consortium (2015), Nature 526:68-74
+**Transcriptional response of human airway smooth muscle cells to dexamethasone**
 
-## Dataset Description
-The 1000 Genomes Project is one of the largest public catalogs of human
-genetic variation. It sequenced the genomes of people from many regions of
-the world and recorded where their DNA differs from the human reference
-genome. The data are stored in VCF format: each row is a variant position,
-and each column is a person's genotype at that position.
-
-## Size
-- Individuals: 2,504 (Phase 3)
-- Populations: 26, grouped into 5 super-populations
-  (African, American, East Asian, European, South Asian)
-- Chromosome 22 variants: about 1.1 million
-- File size: roughly 200 MB compressed (chr22 only, chosen to keep the
-  analysis manageable on a laptop)
+| Item | Details |
+|---|---|
+| Repository | NCBI Gene Expression Omnibus (GEO) |
+| Accession | [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778) |
+| Also available as | Bioconductor R package `airway` |
+| Original publication | Himes BE et al., "RNA-Seq transcriptome profiling identifies CRISPLD2 as a glucocorticoid responsive gene that modulates cytokine function in airway smooth muscle cells", PLoS ONE, 2014 |
+| Organism | *Homo sapiens* (human) |
+| Data type | Bulk RNA-seq (gene expression) |
+| Cell type | Primary human airway smooth muscle (ASM) cells |
+| Experimental design | 4 independent ASM cell lines, each either untreated or treated with dexamethasone (a synthetic glucocorticoid) |
+| Size | 8 samples in total (4 untreated + 4 dexamethasone-treated); a gene-level count table with tens of thousands of gene features (about 64,000 in the `airway` package; verify on the source page) |
+| Access | Free and public, no login required |
 
 ## Research Question
-Can genetic variation on a single human chromosome (chr22) separate
-individuals by ancestry, and which genomic regions and variants contribute
-most to the differences between populations?
+
+> Which genes change their expression when human airway smooth muscle cells are treated with dexamethasone?
 
 ## Why This Dataset
-- Real human genomic data from a landmark research project
-- Standard VCF format, used throughout professional bioinformatics
-- Clear metadata for validating results (known population labels)
-- Supports PCA, population structure, allele frequency, and selection analysis
 
-## Planned Workflow (Next Tasks)
-1. Download chr22 VCF and the sample panel file
-2. Inspect and summarize the VCF (variants, samples, variant types)
-3. Quality filtering (biallelic SNPs, minor allele frequency)
-4. Convert genotypes to a numeric matrix
-5. Run PCA and plot PC1 vs PC2 colored by population
-6. Compare allele frequencies between populations (e.g. Fst)
-7. Identify variants that differ most between groups
-8. Summarize findings
+- Dexamethasone and related glucocorticoids are widely used to treat asthma and other airway diseases, so the biological question is meaningful.
+- The paired design (the same cell line with and without treatment) makes the comparison clear and statistically sensible.
+- The dataset is small and well documented, so it is easy to describe, explore and reproduce.
+- It is a standard benchmark dataset for differential expression analysis.
 
-## Tools
-Python (scikit-allel, NumPy, pandas, scikit-learn, matplotlib),
-bcftools, optionally PLINK
+## Why Not the Other Questions
+
+- **Characterizing unknown protein sequences:** open-ended, and needs a custom sequence set and several tools to define a dataset.
+- **Prioritizing disease-associated variants:** typically needs very large datasets (for example ClinVar, dbSNP, 1000 Genomes), which are heavier to handle for a first task.
+
+## Planned Analysis (future tasks)
+
+1. Quality control of the count data
+2. Differential expression analysis (DESeq2 or edgeR), treated vs. untreated
+3. Visualization: PCA, MA plot, volcano plot, heatmap of top genes
+4. Functional enrichment (GO terms / pathways) of the responsive genes
 
 ## Limitations
-- One chromosome only, so results are a subset of the full genome
-- Sample sizes differ across populations (about 100 per population)
-- Phase 3 uses the GRCh37 reference genome
 
-## Citation
-The 1000 Genomes Project Consortium. A global reference for human genetic
-variation. Nature 526, 68-74 (2015). https://doi.org/10.1038/nature15393
+- Small sample size (n = 4 per condition)
+- Cultured cell lines, which may not fully reflect patient tissue
+- Bulk RNA-seq averages over all cells in a sample
+
+## References
+
+- NCBI GEO: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778
+- Bioconductor `airway` package: https://bioconductor.org/packages/airway/
+- Himes BE et al. PLoS ONE 2014 (see title above)
+
+## Author
+
+Your Name | Internship: SWYNEX Technologies
